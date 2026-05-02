@@ -189,7 +189,7 @@ function App() {
 
       <div className="audio-player-bar">
         <div className="audio-left">
-          <img src="Cover.png" alt="Cover" className="audio-cover" />
+          <img src="../img/Cover.png" alt="Cover" className="audio-cover" />
           <div className="audio-info">
             <span className="song-name">LIL SHWTY</span>
             <span className="artist-name">Hev Abi</span>
