@@ -581,41 +581,68 @@ a, button, .social-icon-link, .discord-card {
   font-weight: 600;
 }
 
-/* --- MOBILE INTEGRATION --- */
+/* /* --- MOBILE INTEGRATION --- */
 @media (max-width: 900px) {
   body {
-    overflow-y: auto; /* Allow scrolling on mobile if content is tall */
+    overflow-y: auto;
   }
   
   .main-container {
-    padding: 20px 0 120px; /* More space at bottom for audio player */
-    align-items: flex-start;
+    padding: 20px 0 120px;
+    align-items: center; /* Center everything for a cleaner mobile look */
   }
 
   .bio-card-landscape { 
     flex-direction: column; 
-    padding: 2.5rem; 
-    gap: 2rem; 
+    padding: 2rem 1.5rem; 
+    gap: 1.5rem; 
     width: 90%;
-    transform: none !important; /* Disable tilt so it doesn't look weird on mobile */
+    transform: none !important; 
+    height: auto; /* Ensure height adjusts to content */
   }
 
   .landscape-left, .landscape-right {
     transform: none !important;
     text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pfp-landscape {
+    width: 140px; /* Slightly smaller for mobile screens */
+    height: 140px;
+    margin-bottom: 10px;
   }
 
   .name-title {
-    font-size: 3rem;
+    font-size: 2.8rem;
+    line-height: 1.2;
   }
 
   .sub-title {
-    letter-spacing: 0.3em;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.2em;
+    margin: 0.5rem 0 1.5rem;
+    font-size: 0.7rem;
   }
 
+  /* FIX FOR MISSING LOGOS */
   .links-row {
+    display: flex !important;
+    flex-direction: row !important; /* Force them to stay side-by-side */
     justify-content: center;
+    gap: 2.5rem; /* Increase gap so they are easy to tap */
+    margin-bottom: 2rem;
+    width: 100%;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .social-icon-link {
+    transform: none !important; /* Remove 3D offsets that hide icons */
+    width: 32px; /* Slightly bigger for touch targets */
+    height: 32px;
   }
 
   .actions-stack-landscape { 
@@ -623,26 +650,23 @@ a, button, .social-icon-link, .discord-card {
     width: 100%; 
   }
 
+  .primary-btn {
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  /* Audio bar adjustment */
   .audio-player-bar {
-    padding: 0 1rem;
-    height: 100px;
+    padding: 0 1.5rem;
+    height: 90px;
   }
 
   .audio-center, .audio-right-volume {
-    display: none; /* Simplify audio bar for mobile screens */
+    display: none;
   }
 
   .audio-left {
     width: 100%;
-  }
-
-  .project-card {
-    width: 90%;
-    margin: 10px;
-  }
-
-  .discord-card {
-    width: 90%;
-    margin: 10px;
+    justify-content: center;
   }
 }
