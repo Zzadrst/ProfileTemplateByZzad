@@ -581,7 +581,7 @@ a, button, .social-icon-link, .discord-card {
   font-weight: 600;
 }
 
-/* /* --- MOBILE INTEGRATION --- */
+/* --- MOBILE INTEGRATION --- */
 @media (max-width: 900px) {
   body {
     overflow-y: auto;
@@ -589,16 +589,16 @@ a, button, .social-icon-link, .discord-card {
   
   .main-container {
     padding: 20px 0 120px;
-    align-items: center; /* Center everything for a cleaner mobile look */
+    align-items: center;
   }
 
   .bio-card-landscape { 
-    flex-direction: column; 
-    padding: 2rem 1.5rem; 
-    gap: 1.5rem; 
+    flex-direction: column !important; 
+    padding: 2.5rem 1.5rem; 
+    gap: 1rem; /* Tightened gap */
     width: 90%;
     transform: none !important; 
-    height: auto; /* Ensure height adjusts to content */
+    height: auto;
   }
 
   .landscape-left, .landscape-right {
@@ -611,62 +611,67 @@ a, button, .social-icon-link, .discord-card {
   }
 
   .pfp-landscape {
-    width: 140px; /* Slightly smaller for mobile screens */
-    height: 140px;
-    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 0;
   }
 
   .name-title {
-    font-size: 2.8rem;
-    line-height: 1.2;
+    font-size: 3.5rem;
+    margin-top: 10px;
   }
 
   .sub-title {
-    letter-spacing: 0.2em;
-    margin: 0.5rem 0 1.5rem;
-    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    margin: 0.5rem 0 1.5rem; /* Reduced bottom margin */
   }
 
-  /* FIX FOR MISSING LOGOS */
+  /* --- THE ICON FIX --- */
   .links-row {
     display: flex !important;
-    flex-direction: row !important; /* Force them to stay side-by-side */
-    justify-content: center;
-    gap: 2.5rem; /* Increase gap so they are easy to tap */
-    margin-bottom: 2rem;
-    width: 100%;
-    opacity: 1 !important;
+    flex-direction: row !important; /* Force icons to stay in a line */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2rem !important; /* Space between icons */
+    margin: 0 auto 2rem auto !important; /* Center it and add space below */
+    width: 100% !important;
+    min-height: 40px;
     visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .social-icon-link {
-    transform: none !important; /* Remove 3D offsets that hide icons */
-    width: 32px; /* Slightly bigger for touch targets */
-    height: 32px;
+    display: block !important;
+    transform: none !important; 
+    width: 30px !important;
+    height: 30px !important;
+    color: #ffffff !important; /* Force white color */
+  }
+
+  .social-icon-link svg {
+    width: 100% !important;
+    height: 100% !important;
+    fill: currentColor;
   }
 
   .actions-stack-landscape { 
-    flex-direction: column; 
-    width: 100%; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .primary-btn {
     width: 100%;
-    padding: 1.2rem;
+    max-width: 300px;
+    padding: 1rem;
   }
 
-  /* Audio bar adjustment */
   .audio-player-bar {
-    padding: 0 1.5rem;
-    height: 90px;
+    height: 80px;
+    padding: 0 1rem;
   }
 
   .audio-center, .audio-right-volume {
     display: none;
-  }
-
-  .audio-left {
-    width: 100%;
-    justify-content: center;
   }
 }
