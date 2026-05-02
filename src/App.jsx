@@ -189,7 +189,7 @@ function App() {
 
       <div className="audio-player-bar">
         <div className="audio-left">
-          <img src="../img/cover.png" alt="Cover" className="audio-cover" />
+          <img src="cover.png" alt="Cover" className="audio-cover" />
           <div className="audio-info">
             <span className="song-name">LIL SHWTY</span>
             <span className="artist-name">Hev Abi</span>
@@ -239,7 +239,7 @@ function App() {
         <audio ref={audioRef} src="/audio/Hev Abi.mp3" loop />
       </div>
     </div>
-  );
+  );ss
 }
 
 export default App;
