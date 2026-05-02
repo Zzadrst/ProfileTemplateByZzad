@@ -33,6 +33,197 @@ a, button, .social-icon-link, .discord-card {
   outline: none !important;
 }
 
+/* --- FALLING LIGHT BALLS EFFECT (TOP-RIGHT TO BOTTOM-LEFT) --- */
+.stars-container {
+  position: absolute;
+  top: -50%; 
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  /* 45 degrees will turn vertical downward movement into top-right -> bottom-left diagonal */
+  transform: rotate(45deg); 
+}
+
+.star {
+  position: absolute;
+  top: -10%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.2) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  /* Animation remains a simple downward move */
+  animation: fall-and-fade 7s linear infinite;
+}
+
+/* The Trail - Now placed at the TOP of the ball so it stays behind as it falls */
+.star::after {
+  content: '';
+  position: absolute;
+  bottom: 100%; /* Trail starts from the top of the ball */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 120px;
+  /* Gradient fades upward, away from the falling ball */
+  background: linear-gradient(to top, rgba(255,255,255,0.4) 0%, transparent 100%);
+}
+
+/* Randomized positions and staggered timing */
+.star:nth-child(1) { left: 10%; animation-delay: 0s; }
+.star:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 5s; }
+.star:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 9s; }
+.star:nth-child(4) { left: 60%; animation-delay: 1s; animation-duration: 6s; }
+.star:nth-child(5) { left: 75%; animation-delay: 5s; }
+.star:nth-child(6) { left: 90%; animation-delay: 3s; animation-duration: 8s; }
+
+@keyframes fall-and-fade {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    /* Falling 150% of the viewport height */
+    transform: translateY(150vh);
+    opacity: 0;
+  }
+}
+
+/* --- AUDIO PLAYER BAR --- */
+.audio-player-bar {
+  position: fixed; /* Fixes it to the viewport */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000; /* Ensures it stays above the star background */
+}
+
+.audio-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 30%;
+}
+
+.audio-cover {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.audio-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.artist-name {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.audio-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 40%;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.control-btn, .play-pause-btn {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  cursor: crosshair !important;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover, .play-pause-btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.play-pause-btn {
+  color: #fff;
+}
+
+.progress-container {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  width: 30%; /* This will be dynamic later */
+}
+
+/* VOLUME SECTION */
+.audio-right-volume {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: crosshair;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
 /* --- BACKGROUND EFFECTS --- */
 .main-container {
   min-height: 100vh;
@@ -137,13 +328,14 @@ a, button, .social-icon-link, .discord-card {
 }
 
 .primary-btn {
-  background: #ffffff;
-  color: #000;
-  border: none;
+  background: #2a2a2a; /* Dark Grey base */
+  color: #888;        /* Dim text */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem 2rem;
   border-radius: 0.6rem;
   font-weight: 800;
-  transition: 0.2s;
+  transition: all 0.3s ease; /* Smooth transition for the neon effect */
+  cursor: crosshair !important;
 }
 
 .secondary-btn {
@@ -156,8 +348,14 @@ a, button, .social-icon-link, .discord-card {
 }
 
 .primary-btn:hover {
-  background: #eee;
+  background: #ffffff; /* Turns White */
+  color: #000;        /* Text turns Black for contrast */
   transform: scale(1.05);
+  /* Neon White Glow Effect */
+  box-shadow: 0 0 10px #ffffff, 
+              0 0 25px #ffffff, 
+              0 0 50px #ffffff;
+  border-color: #ffffff;
 }
 
 /* --- DISCORD PROFILE MODAL (HIGH FIDELITY) --- */
