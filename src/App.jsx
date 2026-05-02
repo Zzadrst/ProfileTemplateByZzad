@@ -236,7 +236,7 @@ function App() {
             className="volume-slider" />
         </div>
 
-        <audio ref={audioRef} src="../audio/Hev Abi.mp3" loop />
+        <audio ref={audioRef} src="/audio/Hev Abi.mp3" loop />
       </div>
     </div>
   );
