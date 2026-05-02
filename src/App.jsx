@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLanyard } from 'react-use-lanyard';
 import { motion } from 'framer-motion';
 import './App.css';
-import zzadImg from '../img/zzad.jpg'; 
 
 function App() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -116,7 +115,7 @@ function App() {
           style={{ transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
         >
           <div className="landscape-left">
-            <img src={zzadImg} alt="zzad profile picture for portfolio" className="pfp-landscape" />
+            <img src="/img/zzad.jpg" alt="zzad" className="pfp-landscape" />
           </div>
 
           <div className="landscape-right">
@@ -222,7 +221,7 @@ function App() {
 
       <div className="audio-player-bar">
         <div className="audio-left">
-          <img src="../img/Cover.png" alt="Album cover for LIL SHWTY by Hev Abi" className="audio-cover" />
+          <img src="/img/Cover.png" alt="Cover" className="audio-cover" />
           <div className="audio-info"><span className="song-name">LIL SHWTY</span><span className="artist-name">Hev Abi</span></div>
         </div>
         <div className="audio-center">
